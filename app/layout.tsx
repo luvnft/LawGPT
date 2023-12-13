@@ -24,7 +24,7 @@ export default function RootLayout({
           name="description"
           content="LawGPT: A legal question answering system built on top of GPT-3.5 implementing RAG."
         />
-        <meta property="og:title" content="LangChain + Next.js Template" />
+        <meta property="og:title" content="LawGPT" />
         <meta
           property="og:description"
           content="LawGPT: A legal question answering system built on top of GPT-3.5 implementing RAG."
@@ -32,7 +32,7 @@ export default function RootLayout({
         {/* TODO: add custom OG image */}
         <meta property="og:image" content="/images/og-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="LangChain + Next.js Template" />
+        <meta name="twitter:title" content="LawGPT" />
         <meta
           name="twitter:description"
           content="LawGPT: A legal question answering system built on top of GPT-3.5 implementing RAG."
