@@ -1,11 +1,11 @@
 # ⚖️ LawGPT
 
-LawGPT is a question answering system for legal documents. It uses [LangChain.js](https://js.langchain.com/) to compose different modules together, including [OpenAI's GPT-3](https://openai.com/blog/openai-api/) and [Supabase](https://supabase.io/). Vercel's [AI SDK](https://github.com/vercel-labs/ai) is used to stream tokens to the client and display the incoming messages.
+LawGPT is a question answering system for legal Indian documents. It uses [LangChain.js](https://js.langchain.com/) to compose different modules together, including [OpenAI's GPT-3](https://openai.com/blog/openai-api/) and [Supabase](https://supabase.io/). Vercel's [AI SDK](https://github.com/vercel-labs/ai) is used to stream tokens to the client and display the incoming messages.
 
 <!-- TODO: add demo -->
 <!-- ![Demo GIF](/public/images/agent-convo.gif) -->
 
-You can check out a hosted version of this repo here: TODO: add link
+You can check out a hosted version of this repo [here](https://lawgpt.siddahmed.tech)
 
 ## 🚀 Getting Started
 
@@ -24,7 +24,7 @@ Now you're ready to run the development server:
 pnm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result! Ask the bot something and you'll see a streamed response:
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result! Ask the bot something and you'll see a streamed response.
 
 <!-- ![A streaming conversation between the user and the AI](/public/images/chat-conversation.png) -->
 <!-- TODO: add converstaion image -->
