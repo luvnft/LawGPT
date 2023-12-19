@@ -15,7 +15,7 @@ export function Navbar() {
       >
         Home
       </a>
-      <a
+      {/* <a
         className={`mr-4 ${
           pathname === "/retrieval" ? "text-white border-b" : ""
         }`}
@@ -24,7 +24,7 @@ export function Navbar() {
       >
         <FaGithub className="inline-block mr-2" />
         GitHub
-      </a>
+      </a> */}
     </nav>
   );
 }
