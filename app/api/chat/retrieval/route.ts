@@ -127,8 +127,8 @@ export async function POST(req: NextRequest) {
           (input) => input.question,
           retrievalChain,
         ]),
-        chat_history: (input) => input.chat_history,
-        question: (input) => input.question,
+        chat_history: (input) => input.original_args.chat_history,
+        question: (input) => input.original_args.question
       },
       answerPrompt,
       model,
@@ -137,7 +137,7 @@ export async function POST(req: NextRequest) {
     const conversationalRetrievalQAChain = RunnableSequence.from([
       {
         question: standaloneQuestionChain,
-        chat_history: (input) => input.chat_history,
+        original_args: new RunnablePassthrough()
       },
       answerChain,
       new BytesOutputParser(),
