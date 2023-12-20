@@ -37,7 +37,8 @@ const formatVercelMessages = (chatHistory: VercelChatMessage[]) => {
   return formattedDialogueTurns.join("\n");
 };
 
-const CONDENSE_QUESTION_TEMPLATE = `Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question, in its original language.
+const CONDENSE_QUESTION_TEMPLATE = `Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question. 
+The prompt must be in English. Translate to english if needed.
 
 <chat_history>
   {chat_history}
@@ -45,13 +46,20 @@ const CONDENSE_QUESTION_TEMPLATE = `Given the following conversation and a follo
 
 Follow Up Input: {question}
 Standalone question:`;
+
 const condenseQuestionPrompt = PromptTemplate.fromTemplate(
   CONDENSE_QUESTION_TEMPLATE,
 );
 
-const ANSWER_TEMPLATE = `You are a helpful and enthusiastic support bot named LawGPT, and must answer all questions as if you were chatting to a friend.
+// TODO: Pass original question as input to answer prompt instead of standalone question
+const ANSWER_TEMPLATE = `You are a helpful and enthusiastic chat bot named LawGPT.
+You are chatting with a user who is asking you questions about a legal topic related to India. 
+This is what you are supposed to do:
+1. You must answer all questions as if you were chatting to a friend.
+2. DO NOT try to answer questions about laws in other countries.
+2. Answer the question in its original language. Translate if needed. 
+3. The answer should be based only on the following context and chat history:
 
-Answer the question in its original language based only on the following context and chat history:
 <context>
   {context}
 </context>
@@ -62,6 +70,7 @@ Answer the question in its original language based only on the following context
 
 Question: {question}
 `;
+
 const answerPrompt = PromptTemplate.fromTemplate(ANSWER_TEMPLATE);
 
 /**
@@ -79,7 +88,7 @@ export async function POST(req: NextRequest) {
 
     const model = new ChatOpenAI({
       modelName: "gpt-3.5-turbo",
-      temperature: 0.8,
+      temperature: 0.6,
     });
 
     const client = createClient(
@@ -128,7 +137,7 @@ export async function POST(req: NextRequest) {
           retrievalChain,
         ]),
         chat_history: (input) => input.original_args.chat_history,
-        question: (input) => input.original_args.question
+        question: (input) => input.original_args.question,
       },
       answerPrompt,
       model,
@@ -137,7 +146,7 @@ export async function POST(req: NextRequest) {
     const conversationalRetrievalQAChain = RunnableSequence.from([
       {
         question: standaloneQuestionChain,
-        original_args: new RunnablePassthrough()
+        original_args: new RunnablePassthrough(),
       },
       answerChain,
       new BytesOutputParser(),
