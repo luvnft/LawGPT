@@ -1,5 +1,6 @@
 import { ChatWindow } from "@/components/ChatWindow";
 import { GoLaw } from "react-icons/go";
+import Link from "next/link";
 
 const lawQuestions = [
   "What is considered as an Indian coin?",
@@ -22,18 +23,19 @@ export default function AgentsPage() {
         <li className="hidden text-l md:block">
           🔗
           <span className="ml-2">
-            This project showcases how to perform retrieval with a{" "}
-            <a href="https://js.langchain.com/" target="_blank">
+            This project showcases Retrieval Augmented Generation on legal
+            documents with multiple{" "}
+            <Link href="https://js.langchain.com/" target="_blank">
               LangChain.js
-            </a>{" "}
-            chain and the Vercel{" "}
-            <a href="https://sdk.vercel.ai/docs" target="_blank">
+            </Link>{" "}
+            chains and the Vercel{" "}
+            <Link href="https://sdk.vercel.ai/docs" target="_blank">
               AI SDK
-            </a>{" "}
+            </Link>{" "}
             in a{" "}
-            <a href="https://nextjs.org/" target="_blank">
+            <Link href="https://nextjs.org/" target="_blank">
               Next.js
-            </a>{" "}
+            </Link>{" "}
             project.
           </span>
         </li>
@@ -45,14 +47,18 @@ export default function AgentsPage() {
               <span className="ml-2">
                 First, it rephrases the input question into a
                 &quot;standalone&quot; question, dereferencing pronouns based on
-                the chat history.
+                the chat history and trimming unnecessary words.
               </span>
             </li>
             <li className="ml-4">
               2️⃣
               <span className="ml-2">
-                Then, it queries the retriever for documents similar to the
-                dereferenced question and composes an answer.
+                Then, it queries the retriever (
+                <Link href={"https://supabase.com/"} target="_blank">
+                  Supabase
+                </Link>{" "}
+                vector store) for documents similar to the dereferenced question
+                and composes an answer.
               </span>
             </li>
           </ul>
@@ -66,6 +72,7 @@ export default function AgentsPage() {
         </li>
 
         <li>
+          🧠
           <span className="ml-2">
             The api logic can be found in{" "}
             <code>app/api/chat/retrieval/route.tsx</code>.
