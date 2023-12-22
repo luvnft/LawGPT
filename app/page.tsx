@@ -1,6 +1,16 @@
 import { ChatWindow } from "@/components/ChatWindow";
 import { GoLaw } from "react-icons/go";
 
+const lawQuestions = [
+  "What is considered as an Indian coin?",
+  "What is the punishment for overspeeding?",
+  "What is the punishment for voluntarily causing hurt?",
+  "What is the considered as assault?",
+  "What is the punishment for robbery?",
+  "What is the punishment for extortion?",
+  "What is the punishment for criminal misappropriation of property?",
+];
+
 export default function AgentsPage() {
   const InfoCard = (
     <div className="p-4 md:p-8 rounded bg-[#25252d] w-full max-h-[85%] overflow-hidden">
@@ -51,15 +61,24 @@ export default function AgentsPage() {
         <li className="text-l">
           🎨
           <span className="ml-2">
-            The main frontend logic is found in{" "}
-            <code>app/retrieval/page.tsx</code>.
+            The main frontend logic is found in <code>app/page.tsx</code>.
+          </span>
+        </li>
+
+        <li>
+          <span className="ml-2">
+            The api logic can be found in{" "}
+            <code>app/api/chat/retrieval/route.tsx</code>.
           </span>
         </li>
 
         <li className="text-l">
           👇
           <span className="ml-2">
-            Try asking e.g. <code>What is considered as an Indian coin?</code>{" "}
+            Try asking e.g.{" "}
+            <code>
+              {lawQuestions[Math.floor(Math.random() * lawQuestions.length)]}
+            </code>{" "}
             below!
           </span>
         </li>
